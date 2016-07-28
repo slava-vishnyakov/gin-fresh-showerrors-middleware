@@ -13,5 +13,5 @@ This will show any build errors and also will try to `go get` packages if they a
 ```go
 import showerrors "github.com/slava-vishnyakov/gin-fresh-showerrors-middleware"
 
-router.Use(showerrors.FromFresh)
+router.Use(showerrors.FromFreshAndGoGet)
 ```
