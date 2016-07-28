@@ -31,7 +31,7 @@ func FromFreshAndGoGet(c *gin.Context) {
 				return
 			}
 
-			c.String(500, "INTERNAL SERVER ERROR:\n\n"+string(b)+"\n\n"+string(b2))
+			c.String(500, "You were missing a package, I installed it, change something to rebuild:\n\n"+string(b)+"\n\n"+string(b2))
 		} else {
 			c.String(500, "INTERNAL SERVER ERROR:\n\n"+string(b))
 		}
