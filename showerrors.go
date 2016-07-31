@@ -11,7 +11,7 @@ import (
 // FromFresh is middleware to show errors on `fresh`` builds
 func FromFresh(c *gin.Context) {
 	b, err := ioutil.ReadFile("tmp/runner-build-errors.log")
-	if err == nil {
+	if err == nil && len(b) > 0 {
 		c.String(500, "INTERNAL SERVER ERROR:\n\n"+string(b))
 		c.Abort()
 		return
@@ -22,7 +22,7 @@ func FromFresh(c *gin.Context) {
 // FromFreshAndGoGet is middleware to show errors on `fresh`` builds
 func FromFreshAndGoGet(c *gin.Context) {
 	b, err := ioutil.ReadFile("tmp/runner-build-errors.log")
-	if err == nil {
+	if err == nil && len(b) > 0 {
 		if strings.Contains(string(b), "cannot find package") {
 			b2, err := exec.Command("go", "get").Output()
 			if err != nil {
